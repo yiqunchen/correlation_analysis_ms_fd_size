@@ -112,7 +112,7 @@ Supervisor: Ren\'e Just \\
 
 % the * after section prevents numbering
 \section*{Abstract}
-Finding best practice in test creation has been an active research area for software engineering domain for decades. A good test suite, by definition, should detect real faults. However the target of interest is usually unknown to the programmers a priori, which prompts the use of mutants, which are artifically generated faults. Mutation score based testing uses mutants as proxies for measuring strength of a test suite, and recently researchers have made multiple attempts to validate the merit of mutant score based testing strategy. This report aims to look at the relationship between fault detection, mutation scores, and size of test suites systematically and investigate a few claims made by Papadakis et al. \todo{\textbf{citation}}. Specifically, they argued that while mutation score is highly correlated with fault detection, the correlation decreases after adjusting for test suite sizes. This observation leads to their conclusion of test suite size being a confounder, and the aim of this report is to demonstrate both conceputal and statistical analysis pitfalls in their work and offer alternative measures of correlation.
+Finding best practice in test creation has been an active research area for software engineering domain for decades. A good test suite, by definition, should detect real faults. However the target of interest is usually unknown to the programmers a priori, which prompts the use of mutants, which are artifically generated faults. Mutation score based testing uses mutants as proxies for measuring strength of a test suite, and recently researchers have made multiple attempts to validate the merit of mutant score based testing strategy. This report aims to look at the relationship between fault detection, mutation scores, and size of test suites systematically and investigate a few claims made by Papadakis et al. Specifically, they argued that while mutation score is highly correlated with fault detection, the correlation decreases after adjusting for test suite sizes. This observation leads to their conclusion of test suite size being a confounder, and the aim of this report is to demonstrate both conceputal and statistical analysis pitfalls in their work and offer alternative measures of correlation.
 
 
 
@@ -474,7 +474,7 @@ In Figure \ref{fig:par_cor_ms_fd}, we only look at the correlation between mutat
 
 \subsubsection{Pearson correlation is bounded}
 
-While it's well-known that a Pearson correlation is bounded between -1 and 1, the same limit does not apply to the correlation of a dichotomous variable and a continuous variable. \todo{cite the paper} Specifically, the maximal correlation between a normally distributed random variable $X$ and a Bernoulli random variable $Y$ with success probability $p$ is given by  
+While it's well-known that a Pearson correlation is bounded between -1 and 1, the same limit does not apply to the correlation of a dichotomous variable and a continuous variable. Specifically, the maximal correlation between a normally distributed random variable $X$ and a Bernoulli random variable $Y$ with success probability $p$ is given by  
 \begin{equation}
 \rho_{X,Y;\max} = \frac{1}{\sqrt[]{2\pi p (1-p)}} \exp(-\frac{1}{2}z_{1-p}^2)
 \end{equation} where $z_{1-p}$ is the $1-p$ quantile of a standard normal distribution. 
@@ -500,7 +500,7 @@ When we proceed to compute the maximal correlation for all 231 programs (See Fig
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.07]{figures/maximal_correlation.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Maximal correlation for all Java programs as a function of sampling ratio}
         \label{fig:max_cor_all_231}
     \end{figure}
     
@@ -512,7 +512,7 @@ When we proceed to compute the maximal correlation for all 231 programs (See Fig
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/beta_coef_size.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Estimated regression coefficients for all programs}
         \label{fig:beta_coef_size}
     \end{figure}
     
@@ -522,7 +522,7 @@ While linear regression does not guarantee the fitted outcome for a binary varia
       \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/stratified_beta_coef_size.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Estimated regression coefficients for all models considered}
         \label{fig:stratified_beta_coef_size}
     \end{figure}
 
@@ -538,7 +538,7 @@ Logistic regression is a far more popular choice for modeling a binary outcome a
 \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/beta_OR_size.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Estimated odds ratios for all programs}
         \label{fig:beta_OR_size}
     \end{figure}
     
@@ -547,7 +547,7 @@ In  Figure \ref{fig:beta_OR_size}, we see a similar trend as in linear regressio
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/stratified_OR_coef_size.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Estimated odds ratios for all models considered}
         \label{fig:stratified_OR_coef_size}
     \end{figure}
     
@@ -563,14 +563,14 @@ We now revisit the idea of probabilistic coupling between a mutant and a fault. 
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.1]{figures/perfect_coupling_prop_box.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Proportion of perfectly coupled mutants for different tasks, stratified by project }
         \label{fig:perfect_coupling_prop_box}
     \end{figure}
     
       \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.1]{figures/distri_coupling_prop.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Distribution of coupling probabilities for different tasks, stratified by project}
         \label{fig:distri_coupling_prop}
     \end{figure}
 
@@ -583,7 +583,7 @@ We now revisit the idea of probabilistic coupling between a mutant and a fault. 
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/couple_reg_coef.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Scatter plot of propotion of perfectly coupled mutants and estimated regression coefficient }
         \label{fig:couple_reg_coef}
     \end{figure}
 
@@ -633,7 +633,7 @@ Furthermore, it would also be statistically more sound to include uncertainty qu
 
 \begin{itemize}
 \item 
-Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mixture}
+Github repo for the study:\url{https://github.com/yiqunchen/correlation_analysis_ms_fd_size}
 \end{itemize}
 
 
@@ -652,15 +652,15 @@ Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mix
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/partial_cor_SIZE_fault_scatter.png}
-        \caption{Histogram representation of the posterior distribution}
-        \label{fig:par_cor_size_scatter}
+        \caption{Scatter plot of partial correlation (adjusting for mutation score) and correlation between size and fault detection}
+        \label{fig:partial_cor_SIZE_fault_scatter}
     \end{figure}
 
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/partial_cor_ms_fault_scatter.png}
-        \caption{Histogram representation of the posterior distribution}
-        \label{fig:par_cor_ms_scatter}
+        \caption{Scatter plot of partial correlation (adjusting for size) and correlation between mutant score and fault detection} 
+        \label{fig:partial_cor_ms_fault_scatter}
     \end{figure}
 
 
@@ -668,7 +668,7 @@ Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mix
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.1]{figures/passing_suite_prob.png}
-        \caption{Histogram representation of the posterior distribution}
+        \caption{Probability of detecting the real fault as a function of sampling ratio, for all 231 Java programs}
         \label{fig:par_cor_ms_fd}
     \end{figure}
 
@@ -679,7 +679,7 @@ Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mix
         \centering
         \includegraphics[scale=0.15]{figures/couple_partial_cor.png}
         \caption{Histogram representation of the posterior distribution}
-        \label{fig:par_cor_ms_scatter}
+        \label{fig:couple_partial_cor}
     \end{figure}
 
 
@@ -687,11 +687,13 @@ Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mix
   \begin{figure}[ht!]
         \centering
         \includegraphics[scale=0.15]{figures/couple_OR.png}
-        \caption{Histogram representation of the posterior distribution}
-        \label{fig:par_cor_ms_scatter}
+        \caption{Scatter plot of propotion of perfectly coupled mutants and estimated odds ratio }
+        \label{fig:couple_OR}
     \end{figure}
 
 %\clearpage
+\subsection*{Reference}
+
 
 
 %This is where your bibliography is generated. Make sure that your .bib file is actually called library.bib
@@ -701,3 +703,7 @@ Github repo for the study:\url{https://github.com/yiqunchen/EM_single_neuron_mix
 \bibliographystyle{abbrv}
 
 \end{document}
+
+
+
+
