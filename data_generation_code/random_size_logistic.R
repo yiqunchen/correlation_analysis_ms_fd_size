@@ -44,7 +44,7 @@ for (i in 1:length(list_of_files)){
   csv_file <- list_of_files[[i]]
   input_df <- read.csv(paste0(input_path,csv_file))
   ratio_sampling <-  runif(N_replica,min=0,max=0.1)
-  sampled_size <- round(ratio_sampling*nrow(input_df))
+  sampled_size <- ceil(ratio_sampling*nrow(input_df))
   index_list <- c(1:nrow(input_df))
   sampled_index <- mclapply(sampled_size, function(x)sample(index_list, x,replace = FALSE),
                             mc.cores = 10)

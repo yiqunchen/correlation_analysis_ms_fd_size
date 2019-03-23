@@ -46,7 +46,7 @@ N_replica <- 10000
 #seq(0.025,0.2,by=0.025)
 
 ratio_sampling <- rep(ratio, times = N_replica) 
-sampled_size <- round(ratio_sampling*nrow(input_df))
+sampled_size <- ceil(ratio_sampling*nrow(input_df))
 
 index_list <- c(1:nrow(input_df))
 
